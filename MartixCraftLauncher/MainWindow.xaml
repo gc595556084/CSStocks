@@ -28,7 +28,7 @@
         <TextBox x:Name="txtMem" HorizontalAlignment="Left" Height="23" Margin="107,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" FontSize="14"/>
         <Label x:Name="lblName" Content="游戏ID" HorizontalAlignment="Left" Height="23" Margin="10,60,0,0" VerticalAlignment="Top" Width="65"/>
         <Label x:Name="lblMemory" Content="内存大小" HorizontalAlignment="Left" Height="23" Margin="10,90,0,0" VerticalAlignment="Top" Width="65" FontWeight="Light"/>
-        <Button x:Name="BtnAdvanced" Content="高级" HorizontalAlignment="Left" Height="60" Margin="370,53,0,0" VerticalAlignment="Top" Width="120" IsDefault="True" BorderBrush="#FFE3A4F1" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="#FFD080E2" Click="btnStart_Click" FontSize="36" FontFamily="Microsoft JhengHei UI">
+        <Button x:Name="BtnAdvanced" Content="高级" HorizontalAlignment="Left" Height="60" Margin="370,53,0,0" VerticalAlignment="Top" Width="120" IsDefault="True" BorderBrush="#FFE3A4F1" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="#FFD080E2" FontSize="36" FontFamily="Microsoft JhengHei UI">
             <Button.Effect>
                 <DropShadowEffect BlurRadius="3" Opacity="0.3" ShadowDepth="3" RenderingBias="Quality"/>
             </Button.Effect>

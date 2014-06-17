@@ -35,6 +35,9 @@ namespace MartixCraftLauncher
         static private string cfg = "mxcl.xml";
         public Boolean IsLaunchering;
         static int Maxmem;
+        private bool isRunning;
+        public static string a;
+        public static string b;
         public MainWindow()
         {
             InitializeComponent();
@@ -67,26 +70,11 @@ namespace MartixCraftLauncher
                 txtMem.Focus();
                 return;
             }
-            if (File.Exists(cfgfile))
-            {
-                cfg = config.Load(cfgfile);
-            }
-            else
-            {
-                cfg = new config();
-            }
-            sliderJavaxmx.Maximum = config.getmem();
-            if (cfg.javaw == "autosearch")
-                txtJavaPath.Text = config.getjavadir();
-            else
-                txtJavaPath.Text = cfg.javaw;
-            if (cfg.javaxmx == "autosearch")
-                txtJavaXmx.Text = (config.getmem() / 4).ToString();
-            else
-                txtJavaXmx.Text = cfg.javaxmx;
-            sliderJavaxmx.Value = int.Parse(txtJavaXmx.Text);
-            txtUserName.Text = cfg.username;
+            txtMem.Text = a;
+            txtName.Text = b;
+            JreRun.Run1(txtName.Text);
         }
+
         #endregion
         #region 主界面的UI处理 拖动 最大化最小化关闭等
         private void BtnClose_Click(object sender, RoutedEventArgs e)
