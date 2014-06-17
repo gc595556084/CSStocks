@@ -32,7 +32,7 @@ namespace MartixCraftLauncher
     /// </summary>
     public partial class MainWindow : Window
     {
-        static private string cfgfile = "mxcl.xml";
+        static private string cfg = "mxcl.xml";
         public Boolean IsLaunchering;
         static int Maxmem;
         public MainWindow()
@@ -43,32 +43,56 @@ namespace MartixCraftLauncher
         /// 获取系统内存大小
         /// </summary>
         /// <returns>内存大小（单位M）</returns>
+        #region 开始游戏部分
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            if (this.IsLaunchering)
-                return;
-            IsLaunchering = true;
+            if (txtName.Text == "")
+            {
+                if (txtMem.Text == "")
+                {
+                    MessageBox.Show("请先修改用户名和内存大小");
+                    txtName.Focus();
+                    return;
+                }
+            }
             if (txtName.Text == "")
             {
                 MessageBox.Show("请先修改用户名");
-                txtName.Focus();
-                return;
-            }
-
-
-            if (txtMem.Text == "")
-            {
-                MessageBox.Show("Set Memory First!");
                 txtMem.Focus();
                 return;
             }
-
+            if (txtMem.Text == "")
+            {
+                MessageBox.Show("请先输入内存大小");
+                txtMem.Focus();
+                return;
+            }
+            if (File.Exists(cfgfile))
+            {
+                cfg = config.Load(cfgfile);
+            }
+            else
+            {
+                cfg = new config();
+            }
+            sliderJavaxmx.Maximum = config.getmem();
+            if (cfg.javaw == "autosearch")
+                txtJavaPath.Text = config.getjavadir();
+            else
+                txtJavaPath.Text = cfg.javaw;
+            if (cfg.javaxmx == "autosearch")
+                txtJavaXmx.Text = (config.getmem() / 4).ToString();
+            else
+                txtJavaXmx.Text = cfg.javaxmx;
+            sliderJavaxmx.Value = int.Parse(txtJavaXmx.Text);
+            txtUserName.Text = cfg.username;
         }
+        #endregion
+        #region 主界面的UI处理 拖动 最大化最小化关闭等
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
         private void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
 
@@ -76,8 +100,13 @@ namespace MartixCraftLauncher
 
         private void BtnMiniaze_Click(object sender, RoutedEventArgs e)
         {
-
+            this.WindowState = WindowState.Minimized;
         }
 
+        private void DragMove(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+        #endregion
     }
 }
